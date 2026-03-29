@@ -65,7 +65,7 @@ function showSurprise() {
 setInterval(() => {
   let heart = document.createElement("div");
   heart.classList.add("heart");
-  heart.innerHTML = "💖";
+  heart.innerHTML = "⚆_⚆";
 
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.fontSize = (Math.random() * 10 + 16) + "px";
