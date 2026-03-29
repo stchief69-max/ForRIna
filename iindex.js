@@ -32,45 +32,45 @@ function typeLetter() {
   }
 }
 
-// Call when surprise opens
 function showSurprise() {
   document.getElementById("surprise").classList.remove("hidden");
 
-  // Confetti
-  for (let i = 0; i < 50; i++) {
+  // prevent iPhone lag (lighter confetti)
+  for (let i = 0; i < 25; i++) {
     let confetti = document.createElement("div");
     confetti.classList.add("confetti");
+
     confetti.style.left = Math.random() * 100 + "vw";
     confetti.style.backgroundColor =
-      "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+      "hsl(" + Math.random() * 360 + ", 100%, 60%)";
+
     document.body.appendChild(confetti);
+
+    setTimeout(() => confetti.remove(), 4000);
   }
 
-  // ⭐️ Photo animation delay (stagger effect)
+  // photo animation (smooth for mobile)
   let photos = document.querySelectorAll(".gallery img");
 
-  photos.forEach((img, index) => {
+  photos.forEach((img, i) => {
     setTimeout(() => {
       img.classList.add("show");
-    }, index * 400); // delay each photo
+    }, i * 300);
   });
 
-  // Start letter typing (if you use it)
-  if (typeof typeLetter === "function") {
-    typeLetter();
-  }
+  typeLetter();
 }
 
-// Floating hearts
+// smoother hearts (optimized for phone)
 setInterval(() => {
   let heart = document.createElement("div");
   heart.classList.add("heart");
+  heart.innerHTML = "💖";
 
-  heart.innerHTML = "⚆_⚆";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+  heart.style.fontSize = (Math.random() * 10 + 16) + "px";
 
   document.body.appendChild(heart);
 
   setTimeout(() => heart.remove(), 5000);
-}, 300);
+}, 400);
